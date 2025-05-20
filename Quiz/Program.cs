@@ -5,7 +5,8 @@ using Quiz.Core.Manager;
 var builder = WebApplication.CreateBuilder(args);
 
 //ConnectionString
-var connectionString = builder.Configuration.GetConnectionString("default");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? Environment.GetEnvironmentVariable("DefaultConnection");
 
 builder.Services.AddDbContext<QuizDbContext>(options =>
 {
